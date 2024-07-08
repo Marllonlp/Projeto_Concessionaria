@@ -21,9 +21,7 @@ public class LoginCadastro extends JFrame { // Declaração da classe LoginCadas
 
     // Método para configurar o painel jpnDados.
     private void configJpnDados() {
-        setTitle("Login" +
-                "" +
-                "");
+        setTitle("Login");
 
 
         jpnDados = new JPanel();
