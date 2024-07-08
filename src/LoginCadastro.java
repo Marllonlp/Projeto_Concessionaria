@@ -1,11 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class LoginCadastro extends JFrame { // Declaração da classe LoginCadastro, que herda da classe JFrame (para criar uma janela).
+public class LoginCadastro extends JFrame implements ActionListener { // Declaração da classe LoginCadastro, que herda da classe JFrame (para criar uma janela).
     private JPanel jpnDados;
     private JTextField campoInserirNome;
     private JTextField campoInserirEmail;
     private JPasswordField campoInserirSenha;
+    private ActionEvent cadastrar;
 
     public LoginCadastro() {
         inicializarJanela();
@@ -22,13 +25,17 @@ public class LoginCadastro extends JFrame { // Declaração da classe LoginCadas
     // Método para configurar o painel jpnDados.
     private void configJpnDados() {
         setTitle("Login");
-
-
         jpnDados = new JPanel();
         jpnDados.setLayout(new FlowLayout());
-        jpnDados.setPreferredSize(new Dimension(300, 150));
-//        jpnDados.setBackground(Color.cyan);
+        jpnDados.setPreferredSize(new Dimension(300, 400));//jpnDados.setBackground(Color.cyan);
         configEntraDados(); // Chama o método para configurar os elementos de entrada de dados.
+
+        JLabel title = new JLabel("Login");
+        title.setFont(new Font("Arial",Font.BOLD, 100));
+
+        title.setBackground(Color.red);
+        jpnDados.add(title);
+
 
         JLabel jlbNome = new JLabel("NOME");
         jlbNome.setFont(new Font("Arial",Font.ITALIC, 20));
@@ -40,14 +47,21 @@ public class LoginCadastro extends JFrame { // Declaração da classe LoginCadas
         jpnDados.add(jlaSenha);
         jpnDados.add(campoInserirSenha);
 
+        JButton jButtonEntrar = new JButton("Entrar");
+        jpnDados.add(jButtonEntrar);
 
+        JButton jButtonCadastrar = new JButton("Cadastrar");
+        jpnDados.add(jButtonCadastrar);
+        jButtonCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jpnDados.setVisible(false);
+            }
+        });
 
     }
 
     private void inicializarJanela() {
-        JLabel title = new JLabel("Login");
-        title.setFont(new Font("Arial",Font.BOLD, 50));
-        this.add(title);
         this.setLayout(new FlowLayout()); // Define o layout da janela como FlowLayout.
         this.setSize(new Dimension(350, 400)); // Define o tamanho da janela.
         this.setResizable(false); // Impede que a janela seja redimensionada.
@@ -59,12 +73,13 @@ public class LoginCadastro extends JFrame { // Declaração da classe LoginCadas
         configJpnDados(); // Chama o método para configurar o painel jpnDados.
         this.add(jpnDados); // Adiciona o painel à janela.
 
-
-        JButton jButton = new JButton("Entrar");
-
-        add(jButton);
         revalidate(); // Revalida a interface gráfica.
 
     }
 
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }
