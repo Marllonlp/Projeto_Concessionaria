@@ -27,12 +27,12 @@ public class LoginCadastro extends JFrame implements ActionListener {
     private void configPaineLogin() {
         setTitle("Login");
         painelLogin = new JPanel();
-        painelLogin.setLayout(new FlowLayout());
+        painelLogin.setLayout(new GridLayout(7, 1, 10, 10));
         painelLogin.setPreferredSize(new Dimension(300, 400));//jpnDados.setBackground(Color.cyan);
         configEntraDados(); // Chama o método para configurar os elementos de entrada de dados.
 
         JLabel title = new JLabel("Login");
-        title.setFont(new Font("Arial",Font.BOLD, 100));
+        title.setFont(new Font("Arial",Font.BOLD, 50));
         painelLogin.add(title);
 
         JLabel jlbNome = new JLabel("NOME");
@@ -96,7 +96,7 @@ public class LoginCadastro extends JFrame implements ActionListener {
 
     private void inicializarJanela() {
         this.setLayout(new FlowLayout()); // Define o layout da janela como FlowLayout.
-        this.setSize(new Dimension(350, 400)); // Define o tamanho da janela.
+        this.setSize(new Dimension(350, 500)); // Define o tamanho da janela.
         this.setResizable(false); // Impede que a janela seja redimensionada.
         this.setLocationRelativeTo(null); // Centraliza a janela na tela.
 
@@ -108,6 +108,7 @@ public class LoginCadastro extends JFrame implements ActionListener {
 
         configPainelCadastrar();
         this.add(painelCadastro);
+        painelCadastro.setVisible(false);
 
 
         revalidate(); // Revalida a interface gráfica.
