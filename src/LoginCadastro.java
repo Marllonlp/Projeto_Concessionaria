@@ -18,9 +18,8 @@ public class LoginCadastro extends JFrame implements ActionListener {
     // Método para configurar os elementos de entrada de dados.
     private void configEntraDados() {
         campoInserirNome = new JTextField(); //Cria um novo campo de texto chamado jlbNome.
-        campoInserirNome.setPreferredSize(new Dimension(300, 30)); //Define a largura e altura do campo de texto.
+        campoInserirEmail = new JTextField();
         campoInserirSenha = new JPasswordField();
-        campoInserirSenha.setPreferredSize(new Dimension(300, 30));
     }
 
     // Método para configurar o painel jpnDados.
@@ -29,62 +28,77 @@ public class LoginCadastro extends JFrame implements ActionListener {
         painelLogin = new JPanel();
         painelLogin.setLayout(new GridLayout(7, 1, 10, 10));
         painelLogin.setPreferredSize(new Dimension(300, 400));//jpnDados.setBackground(Color.cyan);
-        configEntraDados(); // Chama o método para configurar os elementos de entrada de dados.
+        configEntraDados(); //Chama o método para configurar os elementos de entrada de dados.
 
         JLabel title = new JLabel("Login");
-        title.setFont(new Font("Arial",Font.BOLD, 50));
+        title.setFont(new Font("Arial", Font.BOLD, 40));
         painelLogin.add(title);
 
         JLabel jlbNome = new JLabel("NOME");
-        jlbNome.setFont(new Font("Arial",Font.ITALIC, 20));
+        jlbNome.setFont(new Font("Arial", Font.ITALIC, 18));
         painelLogin.add(jlbNome);
         painelLogin.add(campoInserirNome); // Adiciona o campo de texto jlbNome ao painel.
 
         JLabel jlaSenha = new JLabel("SENHA");
-        jlaSenha.setFont(new Font("Arial",Font.ITALIC, 20));
+        jlaSenha.setFont(new Font("Arial", Font.ITALIC, 18));
         painelLogin.add(jlaSenha);
         painelLogin.add(campoInserirSenha);
 
+          // Criação dos botões "Entrar" e "Cadastrar"
         JButton jButtonEntrar = new JButton("Entrar");
-        painelLogin.add(jButtonEntrar);
-
         JButton jButtonCadastrar = new JButton("Cadastrar");
-        painelLogin.add(jButtonCadastrar);
-        jButtonCadastrar.addActionListener(new ActionListener() { //adicinar evento ao botão
+
+          // Adiciona um evento ao botão "Cadastrar"
+        jButtonCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Quando o botão "Cadastrar" for clicado, o painel de cadastro é exibido
+                // e o painel de login é ocultado
                 painelCadastro.setVisible(true);
                 painelLogin.setVisible(false);
             }
         });
+
+// Criação de um painel para os botões
+        JPanel painelBotoes = new JPanel();
+        painelBotoes.setLayout(new FlowLayout());
+        painelBotoes.add(jButtonEntrar); // Adiciona o botão "Entrar" ao painel
+        painelBotoes.add(jButtonCadastrar); // Adiciona o botão "Cadastrar" ao painel
+        painelLogin.add(painelBotoes); // Adiciona o painel de botões ao painel de login
     }
 
     private void configPainelCadastrar() {
         setTitle("Cadastrar");
         painelCadastro = new JPanel();
-        painelCadastro.setLayout(new FlowLayout());
-        painelCadastro.setPreferredSize(new Dimension(300, 400));
+        painelCadastro.setLayout(new GridLayout(9, 1, 10, 10));
+        painelCadastro.setPreferredSize(new Dimension(300, 420));
         configEntraDados(); // Chama o método para configurar os elementos de entrada de dados.
 
         JLabel title = new JLabel("Cadastrar");
-        title.setFont(new Font("Arial",Font.BOLD, 50));
+        title.setFont(new Font("Arial", Font.BOLD, 40));
         painelCadastro.add(title);
 
         JLabel jlbNome = new JLabel("NOME");
-        jlbNome.setFont(new Font("Arial",Font.ITALIC, 20));
+        jlbNome.setFont(new Font("Arial", Font.ITALIC, 18));
         painelCadastro.add(jlbNome);
-        painelCadastro.add(campoInserirNome); // Adiciona o campo de texto jlbNome ao painel.
+        painelCadastro.add(campoInserirNome);
+
+
+        JLabel jlbEmail = new JLabel("EMAIL");
+        jlbEmail.setFont(new Font("Arial", Font.ITALIC, 18));
+        painelCadastro.add(jlbEmail);
+        painelCadastro.add(campoInserirEmail);// Adiciona o campo de texto jlbNome ao painel.
 
         JLabel jlaSenha = new JLabel("SENHA");
-        jlaSenha.setFont(new Font("Arial",Font.ITALIC, 20));
+        jlaSenha.setFont(new Font("Arial", Font.ITALIC, 18));
         painelCadastro.add(jlaSenha);
         painelCadastro.add(campoInserirSenha);
 
+
         JButton jButtonEntrar = new JButton("Entrar");
-        painelCadastro.add(jButtonEntrar);
 
         JButton jButtonCadastrar = new JButton("Cadastrar");
-        painelCadastro.add(jButtonCadastrar);
+
         jButtonEntrar.addActionListener(new ActionListener() { //adicinar evento ao botão
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,6 +106,13 @@ public class LoginCadastro extends JFrame implements ActionListener {
                 painelLogin.setVisible(true);
             }
         });
+
+
+        JPanel painelBotoes = new JPanel();
+        painelBotoes.setLayout(new FlowLayout());
+        painelBotoes.add(jButtonEntrar);
+        painelBotoes.add(jButtonCadastrar);
+        painelCadastro.add(painelBotoes);
     }
 
     private void inicializarJanela() {
@@ -114,6 +135,7 @@ public class LoginCadastro extends JFrame implements ActionListener {
         revalidate(); // Revalida a interface gráfica.
 
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
     }
