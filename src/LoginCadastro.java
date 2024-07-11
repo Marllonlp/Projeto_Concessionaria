@@ -31,7 +31,7 @@ public class LoginCadastro extends JFrame implements ActionListener {
         configEntraDados(); //Chama o método para configurar os elementos de entrada de dados.
 
         JLabel title = new JLabel("Login");
-        title.setFont(new Font("Arial", Font.BOLD, 40));
+        title. setFont(new Font("Arial", Font.BOLD, 40));
         painelLogin.add(title);
 
         JLabel jlbNome = new JLabel("NOME");
