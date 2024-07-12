@@ -15,7 +15,7 @@ public class MenuPrincipal extends JFrame {
         jpMenu.setPreferredSize(new Dimension(this.getWidth(), 30));
         jpMenu.setLayout(new BoxLayout(jpMenu, BoxLayout.LINE_AXIS)); // Altera para BoxLayout
         addBotoes();
-        carros();
+
     }
 
     public void addBotoes() {
@@ -37,13 +37,13 @@ public class MenuPrincipal extends JFrame {
 
     }
 
-    public void carros() {
-       JPanel jCarros = new JPanel();
-//       jCarros.setLayout(new GridLayout(10, 2, 10, 10));
-       jCarros.setPreferredSize(new Dimension(400, 400));
-       jCarros.setBackground(Color.blue);
-       jpMenu.add(jCarros);
-    }
+//    public void carros() {
+//       JPanel jCarros = new JPanel();
+////       jCarros.setLayout(new GridLayout(10, 2, 10, 10));
+//       jCarros.setPreferredSize(new Dimension(400, 400));
+//       jCarros.setBackground(Color.blue);
+//       jpMenu.add(jCarros);
+//    }
 
     private void incializarJanelaP() {
         this.setLayout(new FlowLayout());
