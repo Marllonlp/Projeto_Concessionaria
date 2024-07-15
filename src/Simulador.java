@@ -14,7 +14,6 @@ public class Simulador extends JFrame {
         setLayout(new FlowLayout());
         setTitle("Simulador de Carros");
         setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centraliza a janela na tela
         setResizable(false); // Impede o redimensionamento da janela
         setVisible(true);

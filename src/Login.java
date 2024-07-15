@@ -48,6 +48,10 @@ public class Login extends JPanel {
         this.add(painelBotoes);
     }
 
+    private void setLayout(java.awt.GridLayout gridLayout) {
+
+    }
+
     public static void main(String[] args) {
         new JanelaLoginCadastro(true);
     }

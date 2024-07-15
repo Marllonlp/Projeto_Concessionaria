@@ -11,7 +11,6 @@ public class PerfilUsuario extends JFrame {
 
     private void inicializarJanelaP() {
         setSize(700, 400);  // Define o tamanho da janela
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);  // Centraliza a janela na tela
         setTitle("Perfil de Usuário");
         setResizable(false);

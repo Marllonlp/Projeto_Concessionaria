@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuPrincipal extends JFrame {
+    private static Component instance;
     private JPanel jpMenu;
     private JPanel jpProdutos;
     private JPanel perfilUsuario;
@@ -31,15 +32,6 @@ public class MenuPrincipal extends JFrame {
         botaoHome.setBackground(Color.white);
         jpMenu.add(botaoHome);
 
-        //Botao Simulado
-
-        jpMenu.add(Box.createHorizontalStrut(10));
-        JButton botaoSimu = new JButton("Simulado");
-        jpMenu.add(Box.createHorizontalStrut(2));
-        botaoSimu.setFont(new Font("Arial", Font.BOLD, 15));
-        botaoSimu.setBackground(Color.white);
-        jpMenu.add(botaoSimu);
-
         // Botao Sobre
         JButton botaoSobre = new JButton("Sobre");
         jpMenu.add(Box.createHorizontalStrut(10));
@@ -55,6 +47,15 @@ public class MenuPrincipal extends JFrame {
         botaoPerfil.setBackground(Color.white);
         jpMenu.add(botaoPerfil);
 
+        botaoPerfil.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PerfilUsuario();
+                botaoPerfil.setVisible(true);
+            }
+        });
+
+
     }
 
     public void configPainelProduto() {
@@ -63,11 +64,12 @@ public class MenuPrincipal extends JFrame {
     }
 
     public void produtos() {
+        adicionarProduto("Nissan GTR", "Descrição do Nissan GTR", "imagens/nissan_GTR.jpg");
         adicionarProduto("Porche Macan", "Descrição do Porche Macan", "imagens/porche_macan.jpg");
+        adicionarProduto("Lamborghini Urus", "Descrição da Lamborghini Urus", "imagens/urus.jpg");
+        adicionarProduto("Fusca", "Descrição do Volkswagen Fusca", "imagens/fusca.jpg");
         adicionarProduto("Ferrari Furosangue", "Descrição da Ferrari Furosangue", "imagens/ferrari_furosangue.jpg");
-        adicionarProduto("Nissan GTR", "Descrição da Nissan GTR", "imagens/nissan_GTR.jpg");
-        adicionarProduto("BMW 320i", "Descrição da BMW 320i", "imagens/bmw_320i.jpg");
-        adicionarProduto("BMW 320i", "Descrição da BMW 320i", "imagens/bmw_320i.jpg");
+        adicionarProduto("Audi R8", "Descrição do Audi R8", "imagens/audi.jpeg");
     }
 
     public void adicionarProduto(String titulo, String descricao, String caminhoImagem) {
@@ -91,14 +93,14 @@ public class MenuPrincipal extends JFrame {
         botaoSimularCompra.setBorder(new EmptyBorder(10,1,1,1));
         botaoSimularCompra.setBackground(Color.lightGray);
         botaoSimularCompra.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
         botaoSimularCompra.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //janelaSimulacao();
-               // simulacao.setVisible(true);
+                new Simulador();
+                botaoSimularCompra.setVisible(true);
             }
         });
+
 
         produtoPanel.add(imagemProduto);
         produtoPanel.add(Box.createVerticalStrut(10)); // Espaçamento entre a imagem e o título
@@ -124,7 +126,10 @@ public class MenuPrincipal extends JFrame {
         this.add(jpMenu, BorderLayout.NORTH);
 
         configPainelProduto();
-        this.add(new JScrollPane(jpProdutos), BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(jpProdutos);
+        this.add(scrollPane);
+
+        scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 
         this.setVisible(true);
         revalidate();
