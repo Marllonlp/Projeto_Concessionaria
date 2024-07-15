@@ -39,6 +39,19 @@ public class MenuPrincipal extends JFrame {
         botaoSobre.setBackground(Color.white);
         jpMenu.add(botaoSobre);
 
+        JButton botaoContato = new JButton("Contato");
+        jpMenu.add(Box.createHorizontalStrut(10));
+        botaoContato.setFont(new Font("Arial", Font.BOLD, 15));
+        botaoContato.setBackground(Color.white);
+        jpMenu.add(botaoContato);
+        botaoContato.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Contato();
+                botaoContato.setVisible(true);
+            }
+        });
+
         jpMenu.add(Box.createHorizontalGlue()); // Adiciona um preenchimento horizontal flexível
 
         // Botao Perfil
@@ -117,6 +130,7 @@ public class MenuPrincipal extends JFrame {
 
         this.setLayout(new BorderLayout());
         this.setSize(new Dimension(798, 700));
+        setTitle("Elite Sports Cars");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

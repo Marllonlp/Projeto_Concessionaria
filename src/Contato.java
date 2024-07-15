@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class PerfilUsuario extends JFrame {
-    private JPanel perfilUsuario;
-    public PerfilUsuario() {
+public class Contato extends JFrame {
+    private JPanel contato;
+
+    public Contato() {
         inicializarJanelaP();
         janelaPerfil();
     }
@@ -11,28 +12,32 @@ public class PerfilUsuario extends JFrame {
     private void inicializarJanelaP() {
         setSize(700, 400);  // Define o tamanho da janela
         setLocationRelativeTo(null);  // Centraliza a janela na tela
-        setTitle("Perfil de Usuário");
+        setTitle("Atendimento ao Cliente");
         setResizable(false);
         setVisible(true);
     }
 
     public void janelaPerfil() {
-        perfilUsuario = new JPanel();  // Cria um novo painel para o perfil do usuário
-        perfilUsuario.setBackground(Color.white);
-        perfilUsuario.setLayout(new BoxLayout(perfilUsuario, BoxLayout.Y_AXIS));
+        contato = new JPanel();  // Cria um novo painel para o perfil do usuário
+        contato.setBackground(Color.white);
+        contato.setLayout(new BoxLayout(contato, BoxLayout.Y_AXIS));
 
-        JLabel title = new JLabel("Perfil");
+        JLabel title = new JLabel("Contato");
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);  // Alinha o título ao centro horizontalmente
-        perfilUsuario.add(Box.createVerticalStrut(20));  // Adiciona um espaço vertical antes do título
-        perfilUsuario.add(title);
-        perfilUsuario.add(Box.createVerticalStrut(40));
+        contato.add(Box.createVerticalStrut(20));  // Adiciona um espaço vertical antes do título
+        contato.add(title);
+        contato.add(Box.createVerticalStrut(40));
 
         config("E-mail: user@example.com");
+        config("Avenida das Nações, 1234");
+        config("Bairro: Centro");
+        config("Cidade: Cidade - Estado");
+        config("CEP: 01234-567");
         config("Telefone: (00) 12345 - 6789");
-        config("CPF: 123.456.789-01");
 
-        add(perfilUsuario, BorderLayout.CENTER);
+
+        add(contato, BorderLayout.CENTER);
         revalidate();
     }
 
@@ -40,8 +45,8 @@ public class PerfilUsuario extends JFrame {
         JLabel fonte = new JLabel(texto);
         fonte.setFont(new Font("Sans-serif", Font.BOLD, 13));
         fonte.setAlignmentX(Component.CENTER_ALIGNMENT);
-        perfilUsuario.add(fonte);
-        perfilUsuario.add(Box.createVerticalStrut(10));
+        contato.add(fonte);
+        contato.add(Box.createVerticalStrut(10));
     }
 
 }
