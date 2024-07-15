@@ -1,13 +1,18 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MenuPrincipal extends JFrame {
     private JPanel jpMenu;
     private JPanel jpProdutos;
+    private JPanel perfilUsuario;
+    // private JPanel simulacao;
 
     public MenuPrincipal() {
         inicializarJanelaP();
+
     }
 
     public void configJanela() {
@@ -18,12 +23,15 @@ public class MenuPrincipal extends JFrame {
         addBotoes();
     }
 
+    //Botao Home
     public void addBotoes() {
         JButton botaoHome = new JButton("Home");
         jpMenu.add(Box.createHorizontalStrut(10));
         botaoHome.setFont(new Font("Arial", Font.BOLD, 15));
         botaoHome.setBackground(Color.white);
         jpMenu.add(botaoHome);
+
+        //Botao Simulado
 
         jpMenu.add(Box.createHorizontalStrut(10));
         JButton botaoSimu = new JButton("Simulado");
@@ -32,6 +40,7 @@ public class MenuPrincipal extends JFrame {
         botaoSimu.setBackground(Color.white);
         jpMenu.add(botaoSimu);
 
+        // Botao Sobre
         JButton botaoSobre = new JButton("Sobre");
         jpMenu.add(Box.createHorizontalStrut(10));
         botaoSobre.setFont(new Font("Arial", Font.BOLD, 15));
@@ -40,10 +49,12 @@ public class MenuPrincipal extends JFrame {
 
         jpMenu.add(Box.createHorizontalGlue()); // Adiciona um preenchimento horizontal flexível
 
+        // Botao Perfil
         JButton botaoPerfil = new JButton("Perfil");
         botaoPerfil.setFont(new Font("Arial", Font.BOLD, 15));
         botaoPerfil.setBackground(Color.white);
         jpMenu.add(botaoPerfil);
+
     }
 
     public void configPainelProduto() {
@@ -81,6 +92,14 @@ public class MenuPrincipal extends JFrame {
         botaoSimularCompra.setBackground(Color.lightGray);
         botaoSimularCompra.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        botaoSimularCompra.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //janelaSimulacao();
+               // simulacao.setVisible(true);
+            }
+        });
+
         produtoPanel.add(imagemProduto);
         produtoPanel.add(Box.createVerticalStrut(10)); // Espaçamento entre a imagem e o título
         produtoPanel.add(labelTitulo);
@@ -93,11 +112,13 @@ public class MenuPrincipal extends JFrame {
     }
 
     private void inicializarJanelaP() {
+
         this.setLayout(new BorderLayout());
         this.setSize(new Dimension(798, 700));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 
         configJanela();
         this.add(jpMenu, BorderLayout.NORTH);
@@ -107,6 +128,6 @@ public class MenuPrincipal extends JFrame {
 
         this.setVisible(true);
         revalidate();
-    }
 
+    }
 }
