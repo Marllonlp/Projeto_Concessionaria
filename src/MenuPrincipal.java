@@ -5,11 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuPrincipal extends JFrame {
-    private static Component instance;
     private JPanel jpMenu;
     private JPanel jpProdutos;
-    private JPanel perfilUsuario;
-    // private JPanel simulacao;
+    private JTextField jtBusca;
 
     public MenuPrincipal() {
         inicializarJanelaP();
@@ -18,7 +16,7 @@ public class MenuPrincipal extends JFrame {
 
     public void configJanela() {
         jpMenu = new JPanel();
-        jpMenu.setBackground(Color.gray);
+        jpMenu.setBackground(Color.darkGray);
         jpMenu.setPreferredSize(new Dimension(this.getWidth(), 30));
         jpMenu.setLayout(new BoxLayout(jpMenu, BoxLayout.LINE_AXIS)); //Altera para BoxLayout
         addBotoes();
@@ -27,23 +25,24 @@ public class MenuPrincipal extends JFrame {
     //Botao Home
     public void addBotoes() {
         JButton botaoHome = new JButton("Home");
-        jpMenu.add(Box.createHorizontalStrut(10));
+        jpMenu.add(Box.createHorizontalStrut(0));
         botaoHome.setFont(new Font("Arial", Font.BOLD, 15));
         botaoHome.setBackground(Color.white);
         jpMenu.add(botaoHome);
 
-        // Botao Sobre
-        JButton botaoSobre = new JButton("Sobre");
+        // Botao Produto
+        JButton produto = new JButton("Adicionar Produto");
         jpMenu.add(Box.createHorizontalStrut(10));
-        botaoSobre.setFont(new Font("Arial", Font.BOLD, 15));
-        botaoSobre.setBackground(Color.white);
-        jpMenu.add(botaoSobre);
+        produto.setFont(new Font("Arial", Font.BOLD, 15));
+        produto.setBackground(Color.white);
+        jpMenu.add(produto);
 
         JButton botaoContato = new JButton("Contato");
         jpMenu.add(Box.createHorizontalStrut(10));
         botaoContato.setFont(new Font("Arial", Font.BOLD, 15));
         botaoContato.setBackground(Color.white);
         jpMenu.add(botaoContato);
+
         botaoContato.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,7 +113,6 @@ public class MenuPrincipal extends JFrame {
             }
         });
 
-
         produtoPanel.add(imagemProduto);
         produtoPanel.add(Box.createVerticalStrut(10)); // Espaçamento entre a imagem e o título
         produtoPanel.add(labelTitulo);
@@ -126,27 +124,44 @@ public class MenuPrincipal extends JFrame {
         jpProdutos.add(produtoPanel);
     }
 
+
     private void inicializarJanelaP() {
-
-        this.setLayout(new BorderLayout());
-        this.setSize(new Dimension(798, 700));
         setTitle("Elite Sports Cars");
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(800, 700);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
+        jpMenu = new JPanel();
+        jpMenu.setBackground(Color.gray);
+        jpMenu.setLayout(new BoxLayout(jpMenu, BoxLayout.LINE_AXIS)); // Layout horizontal
 
-        configJanela();
-        this.add(jpMenu, BorderLayout.NORTH);
+        // Barra de Pesquisa
+        jtBusca = new JTextField(20); // Tamanho da barra de pesquisa
+        jtBusca.setMaximumSize(new Dimension(200, jtBusca.getPreferredSize().height)); // Define um tamanho máximo para a barra de pesquisa
+
+        JButton botaoBuscar = new JButton("Buscar");
+
+        jpMenu.add(Box.createHorizontalStrut(10));
+        jpMenu.add(jtBusca);
+        jpMenu.add(Box.createHorizontalStrut(10));
+        jpMenu.add(botaoBuscar);
+        jpMenu.add(Box.createHorizontalGlue()); // Preenchimento flexível à direita
+
+        addBotoes(); // Método para adicionar os botões existentes
 
         configPainelProduto();
         JScrollPane scrollPane = new JScrollPane(jpProdutos);
         this.add(scrollPane);
 
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
-
         this.setVisible(true);
         revalidate();
 
+        setLayout(new BorderLayout());
+        add(jpMenu, BorderLayout.NORTH);
+        add(scrollPane, BorderLayout.CENTER);
+
+        setVisible(true);
     }
 }
