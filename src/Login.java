@@ -2,16 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Login extends JPanel {
-    private JTextField campoInserirNome;
+    private JTextField campoInserirCPF;
     private JPasswordField campoInserirSenha;
+    private JComboBox<String> opcAdmUser;
 
     public Login() {
         configPaineLogin();
     }
 
     private void configEntraDados() {
-        campoInserirNome = new JTextField();
+        campoInserirCPF = new JTextField();
         campoInserirSenha = new JPasswordField();
+        opcAdmUser = new JComboBox<String>(new String[]{"Admin","User"});
     }
 
     private void configPaineLogin() {
@@ -23,10 +25,17 @@ public class Login extends JPanel {
         title.setFont(new Font("Arial", Font.BOLD, 40));
         this.add(title);
 
+        JLabel jlbOpcAdmUser = new JLabel("Entrar como");
+        jlbOpcAdmUser.setFont(new Font("Arial", Font.BOLD, 18));
+        this.add(jlbOpcAdmUser);
+        opcAdmUser.setFont(new Font("Arial", Font.BOLD, 18));
+        this.add(opcAdmUser);
+
+
         JLabel jlbCPF = new JLabel("CPF");
         jlbCPF.setFont(new Font("Arial", Font.BOLD, 18));
         this.add(jlbCPF);
-        this.add(campoInserirNome);
+        this.add(campoInserirCPF);
 
         JLabel jlaSenha = new JLabel("SENHA");
         jlaSenha.setFont(new Font("Arial", Font.BOLD, 18));
@@ -46,10 +55,6 @@ public class Login extends JPanel {
         painelBotoes.add(jButtonEntrar);
         painelBotoes.add(jButtonCadastrar);
         this.add(painelBotoes);
-    }
-
-    private void setLayout(java.awt.GridLayout gridLayout) {
-
     }
 
     public static void main(String[] args) {

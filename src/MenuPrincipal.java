@@ -5,11 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuPrincipal extends JFrame {
-    private static Component instance;
     private JPanel jpMenu;
     private JPanel jpProdutos;
-    private JPanel perfilUsuario;
-    // private JPanel simulacao;
+    private JTextField jtBusca;
 
     public MenuPrincipal() {
         inicializarJanelaP();
@@ -18,7 +16,7 @@ public class MenuPrincipal extends JFrame {
 
     public void configJanela() {
         jpMenu = new JPanel();
-        jpMenu.setBackground(Color.gray);
+        jpMenu.setBackground(Color.darkGray);
         jpMenu.setPreferredSize(new Dimension(this.getWidth(), 30));
         jpMenu.setLayout(new BoxLayout(jpMenu, BoxLayout.LINE_AXIS)); //Altera para BoxLayout
         addBotoes();
@@ -27,7 +25,7 @@ public class MenuPrincipal extends JFrame {
     //Botao Home
     public void addBotoes() {
         JButton botaoHome = new JButton("Home");
-        jpMenu.add(Box.createHorizontalStrut(10));
+        jpMenu.add(Box.createHorizontalStrut(0));
         botaoHome.setFont(new Font("Arial", Font.BOLD, 15));
         botaoHome.setBackground(Color.white);
         jpMenu.add(botaoHome);
@@ -44,6 +42,7 @@ public class MenuPrincipal extends JFrame {
         botaoContato.setFont(new Font("Arial", Font.BOLD, 15));
         botaoContato.setBackground(Color.white);
         jpMenu.add(botaoContato);
+
         botaoContato.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,7 +113,6 @@ public class MenuPrincipal extends JFrame {
             }
         });
 
-
         produtoPanel.add(imagemProduto);
         produtoPanel.add(Box.createVerticalStrut(10)); // Espaçamento entre a imagem e o título
         produtoPanel.add(labelTitulo);
@@ -144,7 +142,6 @@ public class MenuPrincipal extends JFrame {
         this.add(scrollPane);
 
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
-
         this.setVisible(true);
         revalidate();
 
