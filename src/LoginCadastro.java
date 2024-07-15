@@ -24,7 +24,6 @@ public class LoginCadastro extends JFrame implements ActionListener {
     private void configPaineLogin() {
         setTitle("Login");
         painelLogin = new JPanel();
-        painelLogin.setBackground(Color.gray);
         painelLogin.setLayout(new GridLayout(7, 1, 40, 20));
         painelLogin.setPreferredSize(new Dimension(300, 350));
 
@@ -135,4 +134,5 @@ public class LoginCadastro extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
+
 }
