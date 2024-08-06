@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class Cadastro extends JPanel {
     private JTextField campoNome;
@@ -8,8 +9,10 @@ public class Cadastro extends JPanel {
     private JTextField campoEnder;
     private JTextField campoTel;
     private JPasswordField campoSenha;
+    private JanelaLoginCadastro janelaPrincipal;
 
-    public Cadastro() {
+    public Cadastro(JanelaLoginCadastro janela) {
+        this.janelaPrincipal = janela;
         configPainelCadastrar();
     }
 
@@ -23,65 +26,68 @@ public class Cadastro extends JPanel {
     }
 
     private void configPainelCadastrar() {
-        this.setLayout(new GridLayout(14, 1, 4, 1));
-        this.setPreferredSize(new Dimension(300, 480));
+        this.setLayout(new GridBagLayout());
+        this.setBackground(new Color(240, 240, 240));
         configEntraDados();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 10, 5, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel title = new JLabel("CADASTRO", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 30));
-        this.add(title);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        this.add(title, gbc);
 
-        JLabel jlbNome = new JLabel("NOME");
-        jlbNome.setFont(new Font("Arial", Font.BOLD, 15));
-        this.add(jlbNome);
-        this.add(campoNome);
-
-
-        JLabel jlbCPF = new JLabel("CPF");
-        jlbCPF.setFont(new Font("Arial", Font.BOLD, 15));
-        this.add(jlbCPF);
-        this.add(campoCPF);
-
-        JLabel jlbEmail = new JLabel("E-MAIL");
-        jlbEmail.setFont(new Font("Arial", Font.BOLD, 15));
-        this.add(jlbEmail);
-        this.add(campoEmail);
-
-        JLabel jlbTel = new JLabel("TELEFONE");
-        jlbTel.setFont(new Font("Arial", Font.BOLD, 15));
-        this.add(jlbTel);
-        this.add(campoTel);
-
-        JLabel jlbEnd = new JLabel("ENDEREÇO");
-        jlbEnd.setFont(new Font("Arial", Font.BOLD, 15));
-        this.add(jlbEnd);
-        this.add(campoEnder);
-
-        JLabel jlaSenha = new JLabel("SENHA");
-        jlaSenha.setFont(new Font("Arial", Font.BOLD, 15));
-        this.add(jlaSenha);
-        this.add(campoSenha);
-
+        adicionarCampo("NOME", campoNome, gbc, 1);
+        adicionarCampo("CPF", campoCPF, gbc, 3);
+        adicionarCampo("E-MAIL", campoEmail, gbc, 5);
+        adicionarCampo("TELEFONE", campoTel, gbc, 7);
+        adicionarCampo("ENDEREÇO", campoEnder, gbc, 9);
+        adicionarCampo("SENHA", campoSenha, gbc, 11);
 
         JButton jButtonEntrar = new JButton("Entrar");
-        jButtonEntrar.setFont(new Font("Arial", Font.BOLD, 15));
-        jButtonEntrar.setBackground(Color.LIGHT_GRAY);
-        jButtonEntrar.setForeground(Color.black);
+        estilizarBotao(jButtonEntrar);
+        gbc.gridy = 13;
+        gbc.gridwidth = 1;
+        this.add(jButtonEntrar, gbc);
 
         JButton jButtonCadastrar = new JButton("Cadastrar");
-        jButtonCadastrar.setFont(new Font("Arial", Font.BOLD, 15));
-        jButtonCadastrar.setBackground(Color.LIGHT_GRAY);
-        jButtonCadastrar.setForeground(Color.BLACK);
+        estilizarBotao(jButtonCadastrar);
+        gbc.gridx = 1;
+        this.add(jButtonCadastrar, gbc);
 
-        JPanel painelBotoes = new JPanel();
-        painelBotoes.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 6)); // Espaçamento horizontal
-        painelBotoes.add(jButtonEntrar);
-        painelBotoes.add(jButtonCadastrar);
-        this.add(painelBotoes);
+        jButtonEntrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                janelaPrincipal.mostrarLogin();
+            }
+        });
     }
 
-    public static void main(String[] args) {
-        new JanelaLoginCadastro(false);
+    private void adicionarCampo(String label, JTextField campo, GridBagConstraints gbc, int gridy) {
+        JLabel jLabel = new JLabel(label);
+        jLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        gbc.gridy = gridy;
+        gbc.gridwidth = 2;
+        this.add(jLabel, gbc);
+
+        campo.setPreferredSize(new Dimension(290, 30));
+        campo.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.GRAY),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        gbc.gridy = gridy + 1;
+        this.add(campo, gbc);
+    }
+
+    private void estilizarBotao(JButton botao) {
+        botao.setFont(new Font("Arial", Font.BOLD, 15));
+        botao.setBackground(new Color(100, 100, 100));
+        botao.setForeground(Color.WHITE);
+        botao.setFocusPainted(false);
+        botao.setBorderPainted(false);
+        botao.setOpaque(true);
     }
 }
-

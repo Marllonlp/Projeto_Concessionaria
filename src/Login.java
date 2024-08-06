@@ -1,63 +1,99 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class Login extends JPanel {
     private JTextField campoInserirCPF;
     private JPasswordField campoInserirSenha;
     private JComboBox<String> opcAdmUser;
+    private JanelaLoginCadastro janelaPrincipal;
 
-    public Login() {
+    public Login(JanelaLoginCadastro janela) {
+        this.janelaPrincipal = janela;
         configPaineLogin();
     }
 
     private void configEntraDados() {
         campoInserirCPF = new JTextField();
         campoInserirSenha = new JPasswordField();
-        opcAdmUser = new JComboBox<String>(new String[]{"Admin","User"});
+        opcAdmUser = new JComboBox<String>(new String[]{"Admin", "User"});
     }
 
     private void configPaineLogin() {
-        this.setLayout(new GridLayout(10, 1, 4, 1));
-        this.setPreferredSize(new Dimension(300, 500));
-        this.setBorder(BorderFactory.createEmptyBorder(80, 1, 0, 0));
+        this.setLayout(new GridBagLayout());
+        this.setBackground(new Color(240, 240, 240));
         configEntraDados();
-        JLabel title = new JLabel("LOGIN",SwingConstants.CENTER);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        JLabel title = new JLabel("LOGIN", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 40));
-        this.add(title);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        this.add(title, gbc);
 
         JLabel jlbOpcAdmUser = new JLabel("Entrar como");
         jlbOpcAdmUser.setFont(new Font("Arial", Font.BOLD, 18));
-        this.add(jlbOpcAdmUser);
-        opcAdmUser.setFont(new Font("Arial", Font.BOLD, 18));
-        this.add(opcAdmUser);
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        this.add(jlbOpcAdmUser, gbc);
 
+        opcAdmUser.setFont(new Font("Arial", Font.PLAIN, 18));
+        gbc.gridy = 2;
+        this.add(opcAdmUser, gbc);
 
         JLabel jlbCPF = new JLabel("CPF");
         jlbCPF.setFont(new Font("Arial", Font.BOLD, 18));
-        this.add(jlbCPF);
-        this.add(campoInserirCPF);
+        gbc.gridy = 3;
+        this.add(jlbCPF, gbc);
+
+        campoInserirCPF.setPreferredSize(new Dimension(290, 30));
+        campoInserirCPF.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.GRAY),
+                BorderFactory.createEmptyBorder(5, 5, 5, 2)));
+        gbc.gridy = 4;
+        this.add(campoInserirCPF, gbc);
 
         JLabel jlaSenha = new JLabel("SENHA");
         jlaSenha.setFont(new Font("Arial", Font.BOLD, 18));
-        this.add(jlaSenha);
-        this.add(campoInserirSenha);
+        gbc.gridy = 5;
+        this.add(jlaSenha, gbc);
+
+        campoInserirSenha.setPreferredSize(new Dimension(290, 30));
+        campoInserirSenha.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.GRAY),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        gbc.gridy = 6;
+        this.add(campoInserirSenha, gbc);
 
         JButton jButtonEntrar = new JButton("Entrar");
-        jButtonEntrar.setBackground(Color.white);
-        jButtonEntrar.setFont(new Font("Arial", Font.BOLD, 18));
+        estilizarBotao(jButtonEntrar);
+        gbc.gridy = 7;
+        this.add(jButtonEntrar, gbc);
 
         JButton jButtonCadastrar = new JButton("Cadastrar");
-        jButtonCadastrar.setBackground(Color.white);
-        jButtonCadastrar.setFont(new Font("Arial", Font.BOLD, 18));
+        estilizarBotao(jButtonCadastrar);
+        gbc.gridy = 8;
+        this.add(jButtonCadastrar, gbc);
 
-        JPanel painelBotoes = new JPanel();
-        painelBotoes.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 6)); // Espaçamento horizontal
-        painelBotoes.add(jButtonEntrar);
-        painelBotoes.add(jButtonCadastrar);
-        this.add(painelBotoes);
+        jButtonCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                janelaPrincipal.mostrarCadastro();
+            }
+        });
     }
 
-    public static void main(String[] args) {
-        new JanelaLoginCadastro(true);
+    private void estilizarBotao(JButton botao) {
+        botao.setFont(new Font("Arial", Font.BOLD, 18));
+        botao.setBackground(new Color(100, 100, 100));
+        botao.setForeground(Color.WHITE);
+        botao.setFocusPainted(false);
+        botao.setBorderPainted(false);
+        botao.setOpaque(true);
     }
+
 }

@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-//o
-       new MenuPrincipal();
+        JanelaLoginCadastro a = new JanelaLoginCadastro(true);
+        a.setVisible(true);
+
     }
 }
