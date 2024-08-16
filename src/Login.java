@@ -1,6 +1,8 @@
 import dao.UsuarioDAO;
 import model.Usuario;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -80,11 +82,29 @@ public class Login extends JPanel {
            public void actionPerformed(ActionEvent e) {
 //               String cpf = campoInserirCPF.getText();
 //              String senha = campoInserirSenha.getText();
-                Usuario user =  new Usuario();
-                user.setCpf(campoInserirCPF.getText());
-                user.setCpf(campoInserirSenha.getText());
 
-                UsuarioDAO userLogin = new UsuarioDAO();
+                try {
+                    Usuario user = new Usuario();
+                    user.setCpf(campoInserirCPF.getText());
+                    user.setSenha(campoInserirSenha.getText());
+
+                    UsuarioDAO objUsusarioDAO = new UsuarioDAO();
+                    ResultSet rsUsusarioDAO = objUsusarioDAO.autenticaUsuario(user);
+
+                    if(rsUsusarioDAO.next()){
+                        //chamar tela de inicio
+                        MenuPrincipal objTelaPrincipal = new MenuPrincipal();
+                        objTelaPrincipal.setVisible(true);
+                        janelaPrincipal.setVisible(false);
+
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "Usuario ou senha incorreto");
+                    }
+
+                }catch (Exception erro) {
+                    JOptionPane.showMessageDialog(null, "FRMLOGIN" + erro);
+                }
             }
         });
         gbc.gridy = 7;

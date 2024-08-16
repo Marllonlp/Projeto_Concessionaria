@@ -127,8 +127,4 @@ public class Cadastro extends JPanel {
         botao.setOpaque(true);
     }
 
-    public static void main(String[] args) {
-        JanelaLoginCadastro a = new JanelaLoginCadastro(true);
-        a.setVisible(true);
-    }
 }

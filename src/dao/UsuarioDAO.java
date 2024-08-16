@@ -17,7 +17,7 @@ public class UsuarioDAO {
     public ResultSet autenticaUsuario(Usuario objUsusario) throws Exception {
         conn = new ConnectionFactory().createConnectionToMySQL();
         try {
-            String sql = "select * from usuario where nome = ? and senha = ?";
+            String sql = "select * from usuario where cpf = ? and senha = ?";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, objUsusario.getCpf());
             pstm.setString(2, objUsusario.getSenha());
