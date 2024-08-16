@@ -1,3 +1,6 @@
+import dao.UsuarioDAO;
+import model.Usuario;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -71,6 +74,19 @@ public class Login extends JPanel {
 
         JButton jButtonEntrar = new JButton("Entrar");
         estilizarBotao(jButtonEntrar);
+
+        jButtonEntrar.addActionListener(new ActionListener() {
+            @Override
+           public void actionPerformed(ActionEvent e) {
+//               String cpf = campoInserirCPF.getText();
+//              String senha = campoInserirSenha.getText();
+                Usuario user =  new Usuario();
+                user.setCpf(campoInserirCPF.getText());
+                user.setCpf(campoInserirSenha.getText());
+
+                UsuarioDAO userLogin = new UsuarioDAO();
+            }
+        });
         gbc.gridy = 7;
         this.add(jButtonEntrar, gbc);
 
@@ -95,5 +111,4 @@ public class Login extends JPanel {
         botao.setBorderPainted(false);
         botao.setOpaque(true);
     }
-
 }

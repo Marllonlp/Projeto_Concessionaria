@@ -1,7 +1,9 @@
-
+package factory;
 import java.sql.Connection;
 import java.sql.DriverManager;
-public class Conexao{
+
+public class ConnectionFactory {
+
     //Nome do usuário do mysql
     private static final String USERNAME = "root";
 

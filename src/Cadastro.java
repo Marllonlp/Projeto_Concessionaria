@@ -1,3 +1,6 @@
+import dao.UsuarioDAO;
+import model.Usuario;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -56,6 +59,30 @@ public class Cadastro extends JPanel {
 
         JButton jButtonCadastrar = new JButton("Cadastrar");
         estilizarBotao(jButtonCadastrar);
+
+        jButtonCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                String name = campoNome.getText();
+//                String cpf = campoCPF.getText();
+//                String email = campoEmail.getText();
+//                String tel = campoTel.getText();
+//                String end = campoEnder.getText();
+//                String senha = campoSenha.getText();
+                Usuario user =  new Usuario();
+                user.setNome(campoNome.getText());
+                user.setCpf(campoCPF.getText());
+                user.setEmail(campoEmail.getText());
+                user.setTel(campoTel.getText());
+                user.setEnd(campoEnder.getText());
+                user.setSenha(campoSenha.getText());
+
+                UsuarioDAO userCadastro = new UsuarioDAO();
+                 userCadastro.save(user);
+                 limparCapus();
+            }
+        });
+
         gbc.gridx = 1;
         this.add(jButtonCadastrar, gbc);
 
@@ -65,6 +92,15 @@ public class Cadastro extends JPanel {
                 janelaPrincipal.mostrarLogin();
             }
         });
+    }
+
+    public void limparCapus(){
+        campoNome.setText(" ");
+        campoCPF.setText(" ");
+        campoEmail.setText(" ");
+        campoTel.setText(" ");
+        campoEnder.setText(" ");
+        campoSenha.setText(" ");
     }
 
     private void adicionarCampo(String label, JTextField campo, GridBagConstraints gbc, int gridy) {
@@ -89,5 +125,10 @@ public class Cadastro extends JPanel {
         botao.setFocusPainted(false);
         botao.setBorderPainted(false);
         botao.setOpaque(true);
+    }
+
+    public static void main(String[] args) {
+        JanelaLoginCadastro a = new JanelaLoginCadastro(true);
+        a.setVisible(true);
     }
 }
