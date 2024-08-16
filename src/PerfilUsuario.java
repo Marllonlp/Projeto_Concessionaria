@@ -1,3 +1,6 @@
+import dao.UsuarioDAO;
+import model.Usuario;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -28,9 +31,13 @@ public class PerfilUsuario extends JFrame {
         perfilUsuario.add(title);
         perfilUsuario.add(Box.createVerticalStrut(40));
 
-        config("E-mail: user@example.com");
-        config("Telefone: (00) 12345 - 6789");
-        config("CPF: 123.456.789-01");
+//        Usuario dadosUser = new Usuario();
+//        config("E-mail: "+ dadosUser.getEmail());
+//        config("Telefone: "+ dadosUser.getTel());
+//        config("CPF: "+ dadosUser.getCpf());
+//        UsuarioDAO salva = new UsuarioDAO();
+//        salva.save(dadosUser);
+
 
         add(perfilUsuario, BorderLayout.CENTER);
         revalidate();

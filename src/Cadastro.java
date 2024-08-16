@@ -63,13 +63,20 @@ public class Cadastro extends JPanel {
         jButtonCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String cpf = campoCPF.getText();
+                UsuarioDAO VerificarCadastro = new UsuarioDAO();
+
+                if (VerificarCadastro.cpfExists(cpf)) {
+                    JOptionPane.showMessageDialog(null, "CPF já cadastrado. Por favor, use outro CPF.");
+                    return;
+                }
 //                String name = campoNome.getText();
 //                String cpf = campoCPF.getText();
 //                String email = campoEmail.getText();
 //                String tel = campoTel.getText();
 //                String end = campoEnder.getText();
 //                String senha = campoSenha.getText();
-                Usuario user =  new Usuario();
+                Usuario user = new Usuario();
                 user.setNome(campoNome.getText());
                 user.setCpf(campoCPF.getText());
                 user.setEmail(campoEmail.getText());
@@ -78,11 +85,10 @@ public class Cadastro extends JPanel {
                 user.setSenha(campoSenha.getText());
 
                 UsuarioDAO userCadastro = new UsuarioDAO();
-                 userCadastro.save(user);
-                 limparCapus();
+                userCadastro.save(user);
+                limparCapus();
             }
         });
-
         gbc.gridx = 1;
         this.add(jButtonCadastrar, gbc);
 
@@ -94,7 +100,7 @@ public class Cadastro extends JPanel {
         });
     }
 
-    public void limparCapus(){
+    public void limparCapus() {
         campoNome.setText(" ");
         campoCPF.setText(" ");
         campoEmail.setText(" ");
@@ -102,6 +108,8 @@ public class Cadastro extends JPanel {
         campoEnder.setText(" ");
         campoSenha.setText(" ");
     }
+
+
 
     private void adicionarCampo(String label, JTextField campo, GridBagConstraints gbc, int gridy) {
         JLabel jLabel = new JLabel(label);

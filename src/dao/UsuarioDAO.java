@@ -129,6 +129,7 @@ public class UsuarioDAO {
         }
     }
 
+
     public List<Usuario> getContatos() {
         String sql = "SELECT * FROM usuarios ORDER BY id";
 
@@ -166,5 +167,34 @@ public class UsuarioDAO {
             }
         }
         return usuarios;
+    }
+
+    public boolean cpfExists(String cpf) {
+        String sql = "SELECT COUNT(*) FROM usuario WHERE cpf = ?";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null;
+
+        try {
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, cpf);
+            rset = pstm.executeQuery();
+
+            if (rset.next()) {
+                return rset.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rset != null) rset.close();
+                if (pstm != null) pstm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 }
