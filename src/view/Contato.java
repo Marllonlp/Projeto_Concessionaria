@@ -1,3 +1,5 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,7 +24,7 @@ public class Contato extends JFrame {
         contato.setBackground(Color.white);
         contato.setLayout(new BoxLayout(contato, BoxLayout.Y_AXIS));
 
-        JLabel title = new JLabel("Contato");
+        JLabel title = new JLabel("view.Contato");
         title.setFont(new Font("Arial", Font.BOLD, 40));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);  // Alinha o título ao centro horizontalmente
         contato.add(Box.createVerticalStrut(20));  // Adiciona um espaço vertical antes do título

@@ -1,8 +1,4 @@
-import dao.UsuarioDAO;
-import model.Usuario;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -12,6 +8,7 @@ public class Login extends JPanel {
     private JPasswordField campoInserirSenha;
     private JComboBox<String> opcAdmUser;
     private JanelaLoginCadastro janelaPrincipal;
+    private JButton botaoLogin;
 
     public Login(JanelaLoginCadastro janela) {
         this.janelaPrincipal = janela;
@@ -74,41 +71,10 @@ public class Login extends JPanel {
         gbc.gridy = 6;
         this.add(campoInserirSenha, gbc);
 
-        JButton jButtonEntrar = new JButton("Entrar");
-        estilizarBotao(jButtonEntrar);
-
-        jButtonEntrar.addActionListener(new ActionListener() {
-            @Override
-           public void actionPerformed(ActionEvent e) {
-//               String cpf = campoInserirCPF.getText();
-//              String senha = campoInserirSenha.getText();
-
-                try {
-                    Usuario user = new Usuario();
-                    user.setCpf(campoInserirCPF.getText());
-                    user.setSenha(campoInserirSenha.getText());
-
-                    UsuarioDAO objUsusarioDAO = new UsuarioDAO();
-                    ResultSet rsUsusarioDAO = objUsusarioDAO.autenticaUsuario(user);
-
-                    if(rsUsusarioDAO.next()){
-                        //chamar tela de inicio
-                        MenuPrincipal objTelaPrincipal = new MenuPrincipal();
-                        objTelaPrincipal.setVisible(true);
-                        janelaPrincipal.setVisible(false);
-
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(null, "Usuario ou senha incorreto");
-                    }
-
-                }catch (Exception erro) {
-                    JOptionPane.showMessageDialog(null, "FRMLOGIN" + erro);
-                }
-            }
-        });
+        setBotaoLogin(new JButton("Login"));
+        estilizarBotao(getBotaoLogin());
         gbc.gridy = 7;
-        this.add(jButtonEntrar, gbc);
+        this.add(botaoLogin, gbc);
 
         JButton jButtonCadastrar = new JButton("Cadastrar");
         estilizarBotao(jButtonCadastrar);
@@ -130,5 +96,46 @@ public class Login extends JPanel {
         botao.setFocusPainted(false);
         botao.setBorderPainted(false);
         botao.setOpaque(true);
+    }
+
+
+    public JTextField getCampoInserirCPF() {
+        return campoInserirCPF;
+    }
+
+    public void setCampoInserirCPF(JTextField campoInserirCPF) {
+        this.campoInserirCPF = campoInserirCPF;
+    }
+
+    public JPasswordField getCampoInserirSenha() {
+        return campoInserirSenha;
+    }
+
+    public void setCampoInserirSenha(JPasswordField campoInserirSenha) {
+        this.campoInserirSenha = campoInserirSenha;
+    }
+
+    public JComboBox<String> getOpcAdmUser() {
+        return opcAdmUser;
+    }
+
+    public void setOpcAdmUser(JComboBox<String> opcAdmUser) {
+        this.opcAdmUser = opcAdmUser;
+    }
+
+    public JanelaLoginCadastro getJanelaPrincipal() {
+        return janelaPrincipal;
+    }
+
+    public void setJanelaPrincipal(JanelaLoginCadastro janelaPrincipal) {
+        this.janelaPrincipal = janelaPrincipal;
+    }
+
+    public JButton getBotaoLogin() {
+        return botaoLogin;
+    }
+
+    public void setBotaoLogin(JButton botaoLogin) {
+        this.botaoLogin = botaoLogin;
     }
 }

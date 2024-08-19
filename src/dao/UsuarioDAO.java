@@ -1,14 +1,10 @@
 package dao;
-
 import java.sql.SQLException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import factory.ConnectionFactory;
-
 import javax.swing.JOptionPane;
-
 import model.Usuario;
 
 public class UsuarioDAO {
@@ -24,13 +20,39 @@ public class UsuarioDAO {
 
             ResultSet rs = pstm.executeQuery();
             return rs;
-
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Usuario" + erro);
             return null;
         }
     }
 
+    public Usuario buscarPerfilPorCpf(String cpf) {
+        Usuario usuario = null;
+        String sql = "SELECT * FROM usuario WHERE cpf = ?";
+
+        try (Connection conn = ConnectionFactory.createConnectionToMySQL();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, cpf);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setCpf(rs.getString("cpf"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setTel(rs.getString("tel"));
+                usuario.setEnd(rs.getString("end"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return usuario;
+    }
 
     public void save(Usuario usuario) {
         String sql = "INSERT INTO usuario(nome, cpf, email, tel, end, senha) VALUES(?,?,?,?,?,?)";
@@ -96,7 +118,6 @@ public class UsuarioDAO {
 
     public void update(Usuario usuario) {
         String sql = "UPDATE usuarios SET nome = ?, cpf = ?, email = ?, tel = ?, end = ?, senha = ? WHERE id = ?";
-
         Connection conn = null;
         PreparedStatement pstm = null;
 
@@ -129,8 +150,7 @@ public class UsuarioDAO {
         }
     }
 
-
-    public List<Usuario> getContatos() {
+    public List<Usuario> getUsuarios() {
         String sql = "SELECT * FROM usuarios ORDER BY id";
 
         List<Usuario> usuarios = new ArrayList<Usuario>();

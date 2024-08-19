@@ -1,3 +1,5 @@
+package view;
+
 import dao.UsuarioDAO;
 import model.Usuario;
 
@@ -13,6 +15,7 @@ public class Cadastro extends JPanel {
     private JTextField campoTel;
     private JPasswordField campoSenha;
     private JanelaLoginCadastro janelaPrincipal;
+    private JButton botaoCadastrar;
 
     public Cadastro(JanelaLoginCadastro janela) {
         this.janelaPrincipal = janela;
@@ -28,7 +31,8 @@ public class Cadastro extends JPanel {
         campoSenha = new JPasswordField();
     }
 
-    private void configPainelCadastrar() {
+    private void configPainelCadastrar(
+    ) {
         this.setLayout(new GridBagLayout());
         this.setBackground(new Color(240, 240, 240));
         configEntraDados();
@@ -57,40 +61,12 @@ public class Cadastro extends JPanel {
         gbc.gridwidth = 1;
         this.add(jButtonEntrar, gbc);
 
-        JButton jButtonCadastrar = new JButton("Cadastrar");
-        estilizarBotao(jButtonCadastrar);
-
-        jButtonCadastrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String cpf = campoCPF.getText();
-                UsuarioDAO VerificarCadastro = new UsuarioDAO();
-
-                if (VerificarCadastro.cpfExists(cpf)) {
-                    JOptionPane.showMessageDialog(null, "CPF já cadastrado. Por favor, use outro CPF.");
-                    return;
-                }
-//                String name = campoNome.getText();
-//                String cpf = campoCPF.getText();
-//                String email = campoEmail.getText();
-//                String tel = campoTel.getText();
-//                String end = campoEnder.getText();
-//                String senha = campoSenha.getText();
-                Usuario user = new Usuario();
-                user.setNome(campoNome.getText());
-                user.setCpf(campoCPF.getText());
-                user.setEmail(campoEmail.getText());
-                user.setTel(campoTel.getText());
-                user.setEnd(campoEnder.getText());
-                user.setSenha(campoSenha.getText());
-
-                UsuarioDAO userCadastro = new UsuarioDAO();
-                userCadastro.save(user);
-                limparCapus();
-            }
-        });
+        this.setBotaoCadastrar(new JButton("Cadastrar"));
+        gbc.gridy = 13;
+        gbc.gridwidth = 1;
+        estilizarBotao(getBotaoCadastrar());
         gbc.gridx = 1;
-        this.add(jButtonCadastrar, gbc);
+        this.add(botaoCadastrar, gbc);
 
         jButtonEntrar.addActionListener(new ActionListener() {
             @Override
@@ -99,17 +75,6 @@ public class Cadastro extends JPanel {
             }
         });
     }
-
-    public void limparCapus() {
-        campoNome.setText(" ");
-        campoCPF.setText(" ");
-        campoEmail.setText(" ");
-        campoTel.setText(" ");
-        campoEnder.setText(" ");
-        campoSenha.setText(" ");
-    }
-
-
 
     private void adicionarCampo(String label, JTextField campo, GridBagConstraints gbc, int gridy) {
         JLabel jLabel = new JLabel(label);
@@ -134,5 +99,72 @@ public class Cadastro extends JPanel {
         botao.setBorderPainted(false);
         botao.setOpaque(true);
     }
+
+
+    public JTextField getCampoNome() {
+        return campoNome;
+    }
+
+    public void setCampoNome(JTextField campoNome) {
+        this.campoNome = campoNome;
+    }
+
+    public JTextField getCampoCPF() {
+        return campoCPF;
+    }
+
+    public void setCampoCPF(JTextField campoCPF) {
+        this.campoCPF = campoCPF;
+    }
+
+    public JTextField getCampoEmail() {
+        return campoEmail;
+    }
+
+    public void setCampoEmail(JTextField campoEmail) {
+        this.campoEmail = campoEmail;
+    }
+
+    public JTextField getCampoEnder() {
+        return campoEnder;
+    }
+
+    public void setCampoEnder(JTextField campoEnder) {
+        this.campoEnder = campoEnder;
+    }
+
+    public JTextField getCampoTel() {
+        return campoTel;
+    }
+
+    public void setCampoTel(JTextField campoTel) {
+        this.campoTel = campoTel;
+    }
+
+    public JPasswordField getCampoSenha() {
+        return campoSenha;
+    }
+
+    public void setCampoSenha(JPasswordField campoSenha) {
+        this.campoSenha = campoSenha;
+    }
+
+    public JanelaLoginCadastro getJanelaPrincipal() {
+        return janelaPrincipal;
+    }
+
+    public void setJanelaPrincipal(JanelaLoginCadastro janelaPrincipal) {
+        this.janelaPrincipal = janelaPrincipal;
+
+    }
+
+    public JButton getBotaoCadastrar() {
+        return botaoCadastrar;
+    }
+
+    public void setBotaoCadastrar(JButton botao) {
+        this.botaoCadastrar = botao;
+    }
+
 
 }

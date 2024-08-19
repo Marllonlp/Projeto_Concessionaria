@@ -1,5 +1,4 @@
 package model;
-
 public class Usuario {
     private int id;
     private String nome;
@@ -8,7 +7,6 @@ public class Usuario {
     private String tel;
     private String end;
     private String senha;
-
     public Usuario() {
 
     }

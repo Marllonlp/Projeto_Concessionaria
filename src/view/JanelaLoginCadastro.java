@@ -1,10 +1,15 @@
+package view;
+import controller.AutenticarUserController;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class JanelaLoginCadastro extends JFrame {
     JPanel painelLogin;
     JPanel painelCadastro;
+
+
+
     CardLayout cardLayout;
     JPanel contentPane;
 
@@ -19,6 +24,7 @@ public class JanelaLoginCadastro extends JFrame {
         contentPane.add(painelCadastro, "cadastro");
 
         this.setContentPane(contentPane);
+        new AutenticarUserController((Cadastro) painelCadastro, (Login) painelLogin, this);
 
         if(cond) {
             cardLayout.show(contentPane, "login");
@@ -41,5 +47,8 @@ public class JanelaLoginCadastro extends JFrame {
 
     public void mostrarCadastro() {
         cardLayout.show(contentPane, "cadastro");
+    }
+    public CardLayout getCardLayout() {
+        return cardLayout;
     }
 }
