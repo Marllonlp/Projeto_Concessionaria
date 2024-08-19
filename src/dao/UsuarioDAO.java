@@ -7,6 +7,7 @@ import factory.ConnectionFactory;
 import javax.swing.JOptionPane;
 import model.Usuario;
 
+
 public class UsuarioDAO {
     Connection conn;
 

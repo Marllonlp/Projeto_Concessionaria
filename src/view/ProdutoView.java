@@ -1,5 +1,4 @@
 package view;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -34,6 +33,7 @@ public class ProdutoView extends JFrame {
         JLabel title = new JLabel("Cadastrar veículo", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 30));
         jproduto.add(title);
+
 
         idField = new JTextField(10);
         tituloField = new JTextField(10);

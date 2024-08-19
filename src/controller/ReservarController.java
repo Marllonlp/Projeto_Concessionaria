@@ -21,6 +21,7 @@ public class ReservarController {
         this.reservarDAO = reservarDAO;
 
         this.botaoReservar.addActionListener(new ReservarActionListener());
+
     }
 
     private class ReservarActionListener implements ActionListener {

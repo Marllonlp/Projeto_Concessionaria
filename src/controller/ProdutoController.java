@@ -24,6 +24,8 @@ public class ProdutoController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 produtoView.setVisible(true);
+                menuPrincipalView.revalidate();
+                menuPrincipalView.repaint();
             }
         });
     }

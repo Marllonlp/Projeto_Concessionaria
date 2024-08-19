@@ -121,6 +121,7 @@ public class MenuPrincipal extends JFrame {
         getBotaoReservar().setBackground(Color.lightGray);
         getBotaoReservar().setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         new ReservarController(this, titulo, botaoReservar, new ReservarDAO());
+        new CarrinhoController(cpfUsuario, minhasReservas);
 
 
         produtoPanel.add(imagemProduto);
